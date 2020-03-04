@@ -8,3 +8,5 @@ patches:
       base_path: "source_subfolder"
     - patch_file: "patches/fix-missing-includes.patch"
       base_path: "source_subfolder"
+    - patch_file: "patches/interleave-mode-scope.patch"
+      base_path: "source_subfolder"
