@@ -10,3 +10,5 @@ patches:
       base_path: "source_subfolder"
     - patch_file: "patches/interleave-mode-scope.patch"
       base_path: "source_subfolder"
+    - patch_file: "patches/constexpr-msvc2015.patch"
+      base_path: "source_subfolder"
