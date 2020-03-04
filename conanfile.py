@@ -1,6 +1,7 @@
 import os
 
 from conans import ConanFile, CMake, tools
+from conans.errors import ConanInvalidConfiguration
 
 class CharlsConan(ConanFile):
     name = "charls"
@@ -31,8 +32,14 @@ class CharlsConan(ConanFile):
             del self.options.fPIC
 
     def configure(self):
-        if self.options.shared:
-            del self.options.fPIC
+        minimal_cpp_standard = "14"
+        if self.settings.compiler.cppstd:
+            tools.check_min_cppstd(self, minimal_cpp_standard)
+
+        # brace initialization issue for gcc < 5
+        if self.settings.compiler == "gcc" and tools.Version(self.settings.compiler.version) < "5":
+            raise ConanInvalidConfiguration("CharLS can't be compiled by {0} {1}".format(self.settings.compiler,
+                                                                                         self.settings.compiler.version))
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
