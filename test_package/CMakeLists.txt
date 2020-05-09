@@ -8,8 +8,7 @@ conan_basic_setup()
 
 add_executable(test_package_c test_package.c)
 target_link_libraries(test_package_c ${CONAN_LIBS})
-set_target_properties(test_package_c PROPERTIES LINKER_LANGUAGE CXX)
 
 add_executable(test_package_cpp test_package.cpp)
 target_link_libraries(test_package_cpp ${CONAN_LIBS})
-set_target_properties(test_package_cpp PROPERTIES CXX_STANDARD 14)
+set_property(TARGET test_package_cpp PROPERTY CXX_STANDARD 14)
