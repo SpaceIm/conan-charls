@@ -32,9 +32,8 @@ class CharlsConan(ConanFile):
             del self.options.fPIC
 
     def configure(self):
-        minimal_cpp_standard = "14"
         if self.settings.compiler.cppstd:
-            tools.check_min_cppstd(self, minimal_cpp_standard)
+            tools.check_min_cppstd(self, 14)
 
         # brace initialization issue for gcc < 5
         if self.settings.compiler == "gcc" and tools.Version(self.settings.compiler.version) < "5":
